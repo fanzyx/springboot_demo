@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 将api项目的父依赖改为根项目-->
+    <parent>
+        <artifactId>fanyi_scms</artifactId>
+        <groupId>com.fanyi</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.fanyi</groupId>
+    <artifactId>scms_api</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>scms_api</name>
+    <description>Demo project for Spring Boot</description>
+
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <dependencies>
+        <!--引入common模块依赖-->
+        <dependency>
+            <groupId>com.fanyi</groupId>
+            <artifactId>scms_common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <!--引入service模块依赖-->
+        <dependency>
+            <groupId>com.fanyi</groupId>
+            <artifactId>scms_service</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <!--引入springboot-web包-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--引入springboot-test包-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- 引入json格式数据转换工具-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${alibaba-fastjson.version}</version>
+        </dependency>
+
+        <!-- 引入热启动依赖包-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <!--在IDEA中使用时，需加入resources和jav，防止编译时忽略静态资源和配置文件-->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+                <!--这里是false，用true会报 数据库连接 错误-->
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <!--这里配置启动类，如果不配置，maven在打包时会报错-->
+                <configuration>
+                    <mainClass>com.fanyi.ScmsApiApplication</mainClass>
+                </configuration>
+                <!--全部打包,可以解决启动jar没有主属性清单的问题-->
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
