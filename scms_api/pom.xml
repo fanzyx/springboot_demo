@@ -49,7 +49,6 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>${alibaba-fastjson.version}</version>
         </dependency>
 
         <!-- 引入热启动依赖包-->
