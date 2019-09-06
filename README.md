@@ -1,2 +1,2 @@
 # fanyi_scms
-泛亦XXX系统
+SpringBoot 多模块项目 
